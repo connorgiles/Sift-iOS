@@ -45,10 +45,6 @@ struct Article {
     var publication: String!
     var summarizedArticle: String!
     var fullArticle: String!
-
-    init(){
-        
-    }
     
     init(articleID: String, title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String){
         self.articleID = articleID

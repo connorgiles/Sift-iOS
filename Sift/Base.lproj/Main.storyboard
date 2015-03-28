@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="101" id="6Br-6L-RmE" customClass="FeedCell" customModule="Sift" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="101" id="6Br-6L-RmE" customClass="FeedCell" customModule="Sift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Br-6L-RmE" id="zfE-YU-4Ti">
@@ -78,11 +78,57 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="g3v-Qc-byB" id="77N-T5-JLB"/>
+                        <segue destination="xwb-bh-j2D" kind="presentation" identifier="displayArticle" id="wnr-5I-N1L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565" y="475"/>
+            <point key="canvasLocation" x="33" y="483"/>
+        </scene>
+        <!--Article View Controller-->
+        <scene sceneID="Ang-4v-PHD">
+            <objects>
+                <viewController storyboardIdentifier="Article" id="xwb-bh-j2D" customClass="ArticleViewController" customModule="Sift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cGo-hU-FUN"/>
+                        <viewControllerLayoutGuide type="bottom" id="r4D-Dh-6dl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aQi-Of-D1l">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVW-ln-t8S">
+                                <rect key="frame" x="283" y="289" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpW-Zk-BE9">
+                                <rect key="frame" x="16" y="28" width="35" height="30"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sBu-xo-NI5" kind="unwind" unwindAction="closeArticleViewController:" id="M4V-vJ-Hkl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rpW-Zk-BE9" firstAttribute="leading" secondItem="aQi-Of-D1l" secondAttribute="leadingMargin" id="RQB-Ce-Y5J"/>
+                            <constraint firstAttribute="centerX" secondItem="FVW-ln-t8S" secondAttribute="centerX" id="a5R-Jv-9Ni"/>
+                            <constraint firstAttribute="centerY" secondItem="FVW-ln-t8S" secondAttribute="centerY" id="s7n-4j-Bbd"/>
+                            <constraint firstItem="rpW-Zk-BE9" firstAttribute="top" secondItem="cGo-hU-FUN" secondAttribute="bottom" constant="8" id="uJm-e1-des"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="FVW-ln-t8S" id="RdU-fK-gcQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lnf-Kd-67X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sBu-xo-NI5" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="779" y="483"/>
         </scene>
     </scenes>
 </document>

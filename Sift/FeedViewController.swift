@@ -19,6 +19,7 @@ class FeedCell: UITableViewCell {
 class FeedViewController: UIViewController {
     
     var articles = [Article]()
+    var selected: Article!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,8 +27,12 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         
         for var i = 0; i<10; i++ {
-            articles.append(Article(title: "Article \(i)", author: "Author \(i)", date: NSDate(), pictureURL: "", publication: "Publication \(i)", summarizedArticle: "", fullArticle: ""))
+            articles.append(Article(articleID: String(i), title: "Article \(i)", author: "Author \(i)", date: NSDate(), pictureURL: "", publication: "Publication \(i)", summarizedArticle: "", fullArticle: ""))
         }
+        
+    }
+    
+    func getNewArticles() {
         
     }
 
@@ -35,7 +40,16 @@ class FeedViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let articleView = segue.destinationViewController as ArticleViewController
+        articleView.article = selected
+    }
+    
+    @IBAction func closeArticleViewController (sender: UIStoryboardSegue){
+        let articleView = sender.sourceViewController as ArticleViewController
+        articleView.removeFromParentViewController()
+    }
 
 }
 
@@ -59,10 +73,15 @@ extension FeedViewController: UITableViewDataSource {
 }
 
 extension FeedViewController: UITableViewDelegate {
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selected = articles[indexPath.row]
+        
+        selected = articles[indexPath.row]
         println("\(selected.title) Selected")
         
+        performSegueWithIdentifier("displayArticle", sender: self)
         
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
     }
 }
