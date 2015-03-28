@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		215051B3D44622C12065B875 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DA195C1260A33B4BF850A0 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1436FC51AC662CF008AF161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FC41AC662CF008AF161 /* AppDelegate.swift */; };
-		B1436FC71AC662CF008AF161 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FC61AC662CF008AF161 /* ViewController.swift */; };
+		B1436FC71AC662CF008AF161 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FC61AC662CF008AF161 /* FeedViewController.swift */; };
 		B1436FCA1AC662CF008AF161 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1436FC81AC662CF008AF161 /* Main.storyboard */; };
 		B1436FCC1AC662CF008AF161 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1436FCB1AC662CF008AF161 /* Images.xcassets */; };
 		B1436FCF1AC662CF008AF161 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1436FCD1AC662CF008AF161 /* LaunchScreen.xib */; };
 		B1436FDB1AC662CF008AF161 /* SiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FDA1AC662CF008AF161 /* SiftTests.swift */; };
+		B1FBF7831AC66F28007D03C7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7821AC66F28007D03C7 /* Article.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,13 +33,14 @@
 		B1436FBF1AC662CF008AF161 /* Sift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FC31AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1436FC41AC662CF008AF161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B1436FC61AC662CF008AF161 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B1436FC61AC662CF008AF161 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		B1436FC91AC662CF008AF161 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1436FCB1AC662CF008AF161 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B1436FCE1AC662CF008AF161 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B1436FD41AC662CF008AF161 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FD91AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1436FDA1AC662CF008AF161 /* SiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiftTests.swift; sourceTree = "<group>"; };
+		B1FBF7821AC66F28007D03C7 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		F328D852BC32C19FA52CACAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,11 +96,12 @@
 			isa = PBXGroup;
 			children = (
 				B1436FC41AC662CF008AF161 /* AppDelegate.swift */,
-				B1436FC61AC662CF008AF161 /* ViewController.swift */,
+				B1436FC61AC662CF008AF161 /* FeedViewController.swift */,
 				B1436FC81AC662CF008AF161 /* Main.storyboard */,
 				B1436FCB1AC662CF008AF161 /* Images.xcassets */,
 				B1436FCD1AC662CF008AF161 /* LaunchScreen.xib */,
 				B1436FC21AC662CF008AF161 /* Supporting Files */,
+				B1FBF7821AC66F28007D03C7 /* Article.swift */,
 			);
 			path = Sift;
 			sourceTree = "<group>";
@@ -287,8 +290,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1436FC71AC662CF008AF161 /* ViewController.swift in Sources */,
+				B1436FC71AC662CF008AF161 /* FeedViewController.swift in Sources */,
 				B1436FC51AC662CF008AF161 /* AppDelegate.swift in Sources */,
+				B1FBF7831AC66F28007D03C7 /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
