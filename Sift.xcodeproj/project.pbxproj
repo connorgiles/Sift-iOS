@@ -14,6 +14,8 @@
 		B1436FCC1AC662CF008AF161 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1436FCB1AC662CF008AF161 /* Images.xcassets */; };
 		B1436FCF1AC662CF008AF161 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1436FCD1AC662CF008AF161 /* LaunchScreen.xib */; };
 		B1436FDB1AC662CF008AF161 /* SiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FDA1AC662CF008AF161 /* SiftTests.swift */; };
+		B1C8AB421AC70FFE00354520 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */; };
+		B1C8AB431AC70FFE00354520 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */; };
 		B1FBF7831AC66F28007D03C7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7821AC66F28007D03C7 /* Article.swift */; };
 		B1FBF7851AC67BC4007D03C7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		B1436FD41AC662CF008AF161 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FD91AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1436FDA1AC662CF008AF161 /* SiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiftTests.swift; sourceTree = "<group>"; };
+		B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		B1F771281AC68F19005DCD29 /* Sift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1FBF7821AC66F28007D03C7 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		B1436FC21AC662CF008AF161 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */,
+				B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */,
 				B1436FC31AC662CF008AF161 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -229,6 +235,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1C8AB421AC70FFE00354520 /* OpenSans-Bold.ttf in Resources */,
+				B1C8AB431AC70FFE00354520 /* OpenSans-Regular.ttf in Resources */,
 				B1436FCA1AC662CF008AF161 /* Main.storyboard in Resources */,
 				B1436FCF1AC662CF008AF161 /* LaunchScreen.xib in Resources */,
 				B1436FCC1AC662CF008AF161 /* Images.xcassets in Resources */,
@@ -430,6 +438,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sift/Sift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -443,6 +452,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sift/Sift-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

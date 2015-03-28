@@ -8,10 +8,10 @@
 
 import Foundation
 import UIKit
+import SDWebImage
+import SVProgressHUD
 
 struct Article {
-    
-    var articleID: Int!
     var title: String!
     var author: String!
     var date: NSDate!
@@ -39,13 +39,13 @@ struct Article {
         }
     }
     var pictureURL: NSURL!
-    var articlePicture: UIImage!
+    var articleImage = UIImageView()
+    var hasImage = false
     var publication: String!
     var summarizedArticle: String!
     var fullArticle: String!
     
-    init(articleID: Int, title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String){
-        self.articleID = articleID
+    init(title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String){
         self.title = title
         self.author = author
         self.date = date
@@ -53,17 +53,35 @@ struct Article {
         self.publication = publication
         self.summarizedArticle = summarizedArticle
         self.fullArticle = fullArticle
-    }
-    
-    func getArticleImage(completionHandler:(returnedImage: UIImage?) -> ()) {
-        if articlePicture != nil {
-            completionHandler(returnedImage: articlePicture)
-        } else {
-            /*loader.imageForUrl(pictureURL, completionHandler: { (image, url) -> () in
-                completionHandler(returnedImage: image)
-            })*/
-            completionHandler(returnedImage: articlePicture)
-        }
+        hasImage = false
+        
+        // TODO: Determine how to pre-cache items
+        
+        /*
+        let manager = SDWebImageManager()
+        
+        imagesDownloading++
+        SVProgressHUD.show()
+        
+        articleImage.sd_setImageWithURL(self.pictureURL, placeholderImage: UIImage(), options: SDWebImageOptions.RetryFailed, completed:  {
+            (image, error, imageCacheType, URL) -> Void in
+            println("HERE")
+            if error != nil {
+                println("Error: \(error)")
+            } else {
+                self.articleImage.clipsToBounds = true
+                self.articleImage.contentMode = UIViewContentMode.ScaleAspectFill
+                self.hasImage = true
+            }
+            imagesDownloading--
+            
+            if imagesDownloading == 0 {
+                SVProgressHUD.dismiss()
+            }
+            
+        })
+*/
+        
     }
     
     func getPublicationLogo() -> UIImage {
