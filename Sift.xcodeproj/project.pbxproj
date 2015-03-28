@@ -31,6 +31,7 @@
 /* Begin PBXFileReference section */
 		78DA195C1260A33B4BF850A0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		806632FEB09FED8F88D99A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B119047B1AC6F8E7002615FD /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B1436FBF1AC662CF008AF161 /* Sift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FC31AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1436FC41AC662CF008AF161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +42,7 @@
 		B1436FD41AC662CF008AF161 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FD91AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1436FDA1AC662CF008AF161 /* SiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiftTests.swift; sourceTree = "<group>"; };
+		B1F771281AC68F19005DCD29 /* Sift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1FBF7821AC66F28007D03C7 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		F328D852BC32C19FA52CACAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,13 +100,14 @@
 			isa = PBXGroup;
 			children = (
 				B1436FC41AC662CF008AF161 /* AppDelegate.swift */,
+				B1FBF7821AC66F28007D03C7 /* Article.swift */,
+				B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */,
 				B1436FC61AC662CF008AF161 /* FeedViewController.swift */,
 				B1436FC81AC662CF008AF161 /* Main.storyboard */,
 				B1436FCB1AC662CF008AF161 /* Images.xcassets */,
 				B1436FCD1AC662CF008AF161 /* LaunchScreen.xib */,
 				B1436FC21AC662CF008AF161 /* Supporting Files */,
-				B1FBF7821AC66F28007D03C7 /* Article.swift */,
-				B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */,
+				B1F771281AC68F19005DCD29 /* Sift-Bridging-Header.h */,
 			);
 			path = Sift;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 		D155B1D248C32B6E6C43524C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B119047B1AC6F8E7002615FD /* Photos.framework */,
 				78DA195C1260A33B4BF850A0 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -420,9 +424,12 @@
 			baseConfigurationReference = 806632FEB09FED8F88D99A45 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sift/Sift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -431,9 +438,11 @@
 			baseConfigurationReference = F328D852BC32C19FA52CACAA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sift/Sift-Bridging-Header.h";
 			};
 			name = Release;
 		};

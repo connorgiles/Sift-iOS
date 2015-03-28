@@ -15,7 +15,7 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
-        titleLabel.text = article.title
+        titleLabel.text = "\(article.title) \(article.articleID)"
     }
 
 }

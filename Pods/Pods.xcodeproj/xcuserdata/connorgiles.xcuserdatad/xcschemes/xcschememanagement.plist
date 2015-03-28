@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SVPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Spring.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F0EDD2BD67A3C1B4EFF16E1</key>
+		<key>6A6F8BA0416A25628C5F03AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>380368194A25B830F0786FCD</key>
+		<key>6AF4293D0EAAD2AC04C6E901</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E226C1B8A4876752BD5537D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E826D77CFFCF6A53682F6C14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
