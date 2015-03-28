@@ -14,6 +14,9 @@
 		B1436FCC1AC662CF008AF161 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1436FCB1AC662CF008AF161 /* Images.xcassets */; };
 		B1436FCF1AC662CF008AF161 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1436FCD1AC662CF008AF161 /* LaunchScreen.xib */; };
 		B1436FDB1AC662CF008AF161 /* SiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FDA1AC662CF008AF161 /* SiftTests.swift */; };
+		B167673B1AC7565400F4D70B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B167673A1AC7565400F4D70B /* Foundation.framework */; };
+		B167673C1AC7566800F4D70B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16767361AC7552F00F4D70B /* Security.framework */; };
+		B167673D1AC7567200F4D70B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16767381AC7553D00F4D70B /* SystemConfiguration.framework */; };
 		B1C8AB421AC70FFE00354520 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */; };
 		B1C8AB431AC70FFE00354520 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */; };
 		B1FBF7831AC66F28007D03C7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7821AC66F28007D03C7 /* Article.swift */; };
@@ -44,6 +47,9 @@
 		B1436FD41AC662CF008AF161 /* SiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FD91AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1436FDA1AC662CF008AF161 /* SiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiftTests.swift; sourceTree = "<group>"; };
+		B16767361AC7552F00F4D70B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B16767381AC7553D00F4D70B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B167673A1AC7565400F4D70B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		B1F771281AC68F19005DCD29 /* Sift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sift-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -57,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B167673D1AC7567200F4D70B /* SystemConfiguration.framework in Frameworks */,
+				B167673C1AC7566800F4D70B /* Security.framework in Frameworks */,
+				B167673B1AC7565400F4D70B /* Foundation.framework in Frameworks */,
 				215051B3D44622C12065B875 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +155,9 @@
 		D155B1D248C32B6E6C43524C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B167673A1AC7565400F4D70B /* Foundation.framework */,
+				B16767381AC7553D00F4D70B /* SystemConfiguration.framework */,
+				B16767361AC7552F00F4D70B /* Security.framework */,
 				B119047B1AC6F8E7002615FD /* Photos.framework */,
 				78DA195C1260A33B4BF850A0 /* Pods.framework */,
 			);
@@ -433,8 +445,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sift/Sift-iOSAPI",
+				);
 				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"Spring\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sift/Sift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -448,8 +476,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sift/Sift-iOSAPI",
+				);
 				INFOPLIST_FILE = Sift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"SVPullToRefresh\"",
+					"-framework",
+					"\"Spring\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sift/Sift-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

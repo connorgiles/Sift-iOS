@@ -123,9 +123,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="articleImage" destination="sXC-SF-2YQ" id="Bgt-GM-rRD"/>
+                                            <outlet property="articleImage" destination="sXC-SF-2YQ" id="sY5-7Z-C7l"/>
                                             <outlet property="detailsLabel" destination="QzV-GW-hGk" id="ObO-bk-fTH"/>
-                                            <outlet property="imageView" destination="sXC-SF-2YQ" id="1kW-rg-Ybt"/>
                                             <outlet property="publicationLogo" destination="181-AN-Nm1" id="p4J-3u-AIK"/>
                                             <outlet property="titleLabel" destination="bbW-4q-gkG" id="78o-HW-dyN"/>
                                         </connections>
@@ -183,7 +182,6 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lZd-lu-JFo">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
-                                                <color key="backgroundColor" red="0.27058824896812439" green="0.97647064924240112" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="214" id="dGR-7U-fPE"/>
                                                 </constraints>
@@ -266,6 +264,7 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="2Z8-YY-lD1"/>
                                                 <exclude reference="FPB-pb-O6q"/>
                                                 <exclude reference="PMh-li-01F"/>
                                                 <exclude reference="QOQ-hq-qJ6"/>

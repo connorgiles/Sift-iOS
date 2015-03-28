@@ -52,12 +52,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'SVProgressHUD.framework'
   install_framework 'SVPullToRefresh.framework'
   install_framework 'Spring.framework'
-  install_framework 'UIActivityIndicator_for_SDWebImage.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'SDWebImage.framework'
   install_framework 'SVProgressHUD.framework'
   install_framework 'SVPullToRefresh.framework'
   install_framework 'Spring.framework'
-  install_framework 'UIActivityIndicator_for_SDWebImage.framework'
 fi

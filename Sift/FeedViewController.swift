@@ -26,6 +26,15 @@ class FeedCell: UITableViewCell{
         articleImage.frame = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height)
     }
     
+    func setupArticle(article: Article) {
+        
+        titleLabel.text = article.title
+        detailsLabel.text = article.details
+        
+        articleImage.image = article.articleImage
+        articleImage.clipsToBounds = true
+        articleImage.contentMode = UIViewContentMode.ScaleAspectFill    }
+    
 }
 
 class FeedViewController: UIViewController {
@@ -52,7 +61,7 @@ class FeedViewController: UIViewController {
     func getNewerArticles() {
         
         for var i = 0; i<10; i++ {
-            articles.append(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1421977870504-378093748ae6", publication: "Publication", summarizedArticle: "", fullArticle: ""))
+            articles.append(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1421757295538-9c80958e75b0", publication: "Publication", summarizedArticle: "", fullArticle: ""))
             
             tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: articles.count-1
                 , inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
@@ -65,7 +74,7 @@ class FeedViewController: UIViewController {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!
         
         for var i = 0; i<10; i++ {
-            articles.insert(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1421977870504-378093748ae6", publication: "Publication", summarizedArticle: "", fullArticle: ""), atIndex: 0)
+            articles.insert(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1421757295538-9c80958e75b0", publication: "Publication", summarizedArticle: "", fullArticle: ""), atIndex: 0)
         }
         
         tableView.reloadData()
@@ -109,30 +118,27 @@ extension FeedViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedCell
         
-        cell.titleLabel.text = article.title
-        cell.detailsLabel.text = article.details
-        
-        println(article.hasImage)
-        SVProgressHUD.show()
-        imagesDownloading++
-        
-        cell.articleImage.sd_setImageWithURL(article.pictureURL, placeholderImage: UIImage(), options: SDWebImageOptions.RetryFailed, completed:  {
-            (image, error, imageCacheType, URL) -> Void in
+        if article.hasImage! {
             
-            if error != nil {
-                println("Error: \(error)")
-            } else {
-                cell.articleImage.clipsToBounds = true
-                cell.articleImage.contentMode = UIViewContentMode.ScaleAspectFill
+            println("Has Image")
+            
+            cell.setupArticle(article)
+            cell.setNeedsLayout()
+            
+        } else {
+            
+            println("Needs image")
+            
+            article.retrieveImage({ () -> () in
+                cell.setupArticle(article)
                 cell.setNeedsLayout()
-            }
-            imagesDownloading--
+                //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                println("Image has been cached")
+                
+            })
             
-            if imagesDownloading == 0 {
-                SVProgressHUD.dismiss()
-            }
             
-        })
+        }
         
         cell.layoutSubviews()
         

@@ -23,20 +23,30 @@ class ArticleViewController: UIViewController {
         titleLabel.text = article.title
         textContent.text = article.summarizedArticle
         
-        articleImage.sd_setImageWithURL(article.pictureURL, placeholderImage: UIImage(), options: SDWebImageOptions.RetryFailed, completed:  {
-            (image, error, imageCacheType, URL) -> Void in
+        if article.hasImage! {
             
-            if error != nil {
-                println("Error: \(error)")
-            } else {
-                self.articleImage.clipsToBounds = true
-            }
+            println("Has Image")
+            articleImage.image = article.articleImage
             
-            if imagesDownloading == 0 {
-            }
+        } else {
             
-        })
+            println("Needs image")
+            
+            article.retrieveImage({ () -> () in
+                self.articleImage.image = self.article.articleImage
+                println("Image has been cached")
+                
+            })
+            
+            
+        }
         
+        articleImage.clipsToBounds = true
+        articleImage.contentMode = UIViewContentMode.ScaleAspectFill
+        
+    }
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
 }

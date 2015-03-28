@@ -11,7 +11,7 @@ import UIKit
 import SDWebImage
 import SVProgressHUD
 
-struct Article {
+class Article {
     var title: String!
     var author: String!
     var date: NSDate!
@@ -39,8 +39,9 @@ struct Article {
         }
     }
     var pictureURL: NSURL!
-    var articleImage = UIImageView()
-    var hasImage = false
+    var articleImage = UIImage()
+    var hasImage: Bool!
+    var isRetrieving: Bool!
     var publication: String!
     var summarizedArticle: String!
     var fullArticle: String!
@@ -54,34 +55,41 @@ struct Article {
         self.summarizedArticle = summarizedArticle
         self.fullArticle = fullArticle
         hasImage = false
+        isRetrieving = false
         
-        // TODO: Determine how to pre-cache items
+    }
+    
+    func retrieveImage(completion: () -> ()) {
         
-        /*
-        let manager = SDWebImageManager()
-        
-        imagesDownloading++
-        SVProgressHUD.show()
-        
-        articleImage.sd_setImageWithURL(self.pictureURL, placeholderImage: UIImage(), options: SDWebImageOptions.RetryFailed, completed:  {
-            (image, error, imageCacheType, URL) -> Void in
-            println("HERE")
-            if error != nil {
-                println("Error: \(error)")
-            } else {
-                self.articleImage.clipsToBounds = true
-                self.articleImage.contentMode = UIViewContentMode.ScaleAspectFill
-                self.hasImage = true
-            }
-            imagesDownloading--
+        if !isRetrieving {
             
-            if imagesDownloading == 0 {
-                SVProgressHUD.dismiss()
-            }
+            isRetrieving = true
             
-        })
-*/
-        
+            imagesDownloading++
+            SVProgressHUD.show()
+            
+            let manager = SDWebImageManager()
+            
+            println("Start Download")
+            
+            manager.downloadImageWithURL(self.pictureURL, options: SDWebImageOptions.RetryFailed, progress: { (progress, total) -> Void in
+                println("DOWNLOADING")
+            }, completed: { (image, error, cacheType, finished, URL) -> Void in
+                if error != nil {
+                    println("Error: \(error)")
+                } else {
+                    self.hasImage = true
+                    self.isRetrieving = false
+                    self.articleImage = image
+                    completion()
+                }
+                imagesDownloading--
+                
+                if imagesDownloading == 0 {
+                    SVProgressHUD.dismiss()
+                }
+            })
+        }
     }
     
     func getPublicationLogo() -> UIImage {
