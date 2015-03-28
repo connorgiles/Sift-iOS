@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -36,7 +37,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Br-6L-RmE" id="zfE-YU-4Ti">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYa-HL-8De" customClass="SpringView" customModule="Spring">
+                                                <view contentMode="scaleToFill" restorationIdentifier="'" translatesAutoresizingMaskIntoConstraints="NO" id="jYa-HL-8De">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
                                                     <subviews>
                                                         <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sXC-SF-2YQ">
@@ -93,14 +94,6 @@
                                                         <constraint firstItem="3c8-N4-RxZ" firstAttribute="top" secondItem="jYa-HL-8De" secondAttribute="top" id="uqc-4B-CCe"/>
                                                         <constraint firstItem="QzV-GW-hGk" firstAttribute="top" secondItem="bbW-4q-gkG" secondAttribute="bottom" constant="2.5" id="vag-f3-c5E"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeIn"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="3Rr-1Q-UNX"/>

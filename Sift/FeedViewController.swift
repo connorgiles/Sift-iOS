@@ -9,7 +9,6 @@
 import UIKit
 import SVPullToRefresh
 import SVProgressHUD
-import Spring
 import SDWebImage
 
 var imagesDownloading = 0
@@ -61,7 +60,7 @@ class FeedViewController: UIViewController {
     func getNewerArticles() {
         
         for var i = 0; i<10; i++ {
-            articles.append(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1421757295538-9c80958e75b0", publication: "Publication", summarizedArticle: "", fullArticle: ""))
+            articles.append(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1423753623104-718aaace6772", publication: "Publication", summarizedArticle: "", fullArticle: ""))
             
             tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: articles.count-1
                 , inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
@@ -74,7 +73,7 @@ class FeedViewController: UIViewController {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!
         
         for var i = 0; i<10; i++ {
-            articles.insert(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1421757295538-9c80958e75b0", publication: "Publication", summarizedArticle: "", fullArticle: ""), atIndex: 0)
+            articles.insert(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1423753623104-718aaace6772", publication: "Publication", summarizedArticle: "", fullArticle: ""), atIndex: 0)
         }
         
         tableView.reloadData()
