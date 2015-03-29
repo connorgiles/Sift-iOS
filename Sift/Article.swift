@@ -48,7 +48,7 @@ class Article {
     var upvotes: Int!
     var upvotedByUser: Int!
     
-    let publicationLogos = ["TechCrunch": UIImage(named: "logo-tech-crunch"), "VentureBeat": UIImage(named: "logo-venturebeat"), "FastCompany": UIImage(named: "logo-fast-company")]
+    let publicationLogos = ["TechCrunch": UIImage(named: "logo-tech-crunch"), "VentureBeat": UIImage(named: "logo-venturebeat"), "FastCompany": UIImage(named: "logo-fast-company"), "Wired": UIImage(named: "logo-wired")]
     
     init(title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String, upvotes: Int, upvotedByUser: Int){
         self.title = title

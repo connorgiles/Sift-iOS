@@ -21,19 +21,32 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var textContent: UITextView!
     @IBOutlet weak var publicationLogo: UIImageView!
     @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var recomendButton: UIButton!
     
+    var buttonColor = UIColor(red: 18/255.0, green: 94/255.0, blue: 171/255.0, alpha: 1)
     var feedView: FeedViewController!
     
     override func viewDidLoad() {
         
         textContent.textContainer.lineFragmentPadding = 0
         textContent.layoutManager.delegate = self
-        5
+        
         titleLabel.text = article.title
         textContent.text = article.summarizedArticle
         detailsLabel.text = article.details
         publicationLogo.image = article.getPublicationLogo()
-        upvotesLabel.text = String(article.upvotes)
+        upvotesLabel.text = "Recommended by \(article.upvotes)"
+        
+        recomendButton.layer.borderColor = buttonColor.CGColor
+        recomendButton.layer.borderWidth = 1
+        self.recomendButton.setTitleColor(buttonColor, forState: UIControlState.Normal)
+        
+        if article.upvotedByUser == 1 {
+            self.recomendButton.layer.borderWidth = 0
+            self.recomendButton.layer.backgroundColor = buttonColor.CGColor
+            self.recomendButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            self.recomendButton.setTitle("Recommended", forState: UIControlState.Normal)
+        }
         
         if article.hasImage! {
             
@@ -102,7 +115,7 @@ class ArticleViewController: UIViewController {
         }
     }
     
-    @IBAction func recommentArticle(sender: AnyObject) {
+    @IBAction func recommendArticle(sender: AnyObject) {
         //Setup Google Service
         var service = GTLServiceSift()
         service.retryEnabled = true
@@ -118,30 +131,35 @@ class ArticleViewController: UIViewController {
         //Declare query
         var query = GTLQuerySift.queryForSiftApiUpvoteWithObject(upvoteRequest) as GTLQuerySift
         
-        if(article.upvotedByUser == 0){
-        //Perform authentication and login
-        service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
-            if object != nil {
+        if(article.upvotedByUser == 0) {
+            //Perform authentication and login
+            service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+                if object != nil {
+                    
+                    //Cast down to Article Response Message
+                    let response = object as GTLSiftMainUpvoteResponse
+                    
+                    self.article.upvotes = response.articleUpvotes as Int
+                    
+                    self.upvotesLabel.text = "Recommended by \(self.article.upvotes)"
+                    
+                    self.recomendButton.layer.borderWidth = 0
+                    self.recomendButton.layer.backgroundColor = self.buttonColor.CGColor
+                    self.recomendButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                    self.recomendButton.setTitle("Recommended", forState: UIControlState.Normal)
+                    
+                    self.article.upvotedByUser = 1
+                    
+                    
+                } else {
+                    println("Error: \(error)")
+                }
                 
-                //Cast down to Article Response Message
-                let response = object as GTLSiftMainUpvoteResponse
-                
-                self.upvotesLabel.text = response.articleUpvotes.stringValue
-                
-                self.article.upvotes = response.articleUpvotes as Int
-                
-                self.article.upvotedByUser = 1
-                
-                
-            } else {
-                println("Error: \(error)")
-            }
-            
-        })
+            })
         }
-
+        
     }
-
+    
 }
 
 
@@ -157,8 +175,8 @@ extension ArticleViewController: UIScrollViewDelegate {
         
         let bottomOffset = scrollView.contentSize.height - scrollView.bounds.origin.y - scrollView.bounds.height
         
-        if bottomOffset < -60 {
-
+        if bottomOffset < -50 {
+            
             var anim = POPBasicAnimation(propertyNamed: kPOPLayerPosition)
             anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
             //anim.fromValue = NSValue(CGPoint: view.frame.origin)
@@ -168,6 +186,8 @@ extension ArticleViewController: UIScrollViewDelegate {
                 if done {
                     self.dismissViewControllerAnimated(false, completion: { () -> Void in
                         self.feedView.tableView.reloadData()
+                        self.feedView.viewingArticle = false
+                        self.feedView.setNeedsStatusBarAppearanceUpdate()
                     })
                 }
             }
@@ -180,6 +200,8 @@ extension ArticleViewController: UIScrollViewDelegate {
         } else if scrollView.bounds.origin.y < -60 {
             dismissViewControllerAnimated(true, completion: { () -> Void in
                 self.feedView.tableView.reloadData()
+                self.feedView.viewingArticle = false
+                self.feedView.setNeedsStatusBarAppearanceUpdate()
             })
         }
     }

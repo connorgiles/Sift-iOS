@@ -31,7 +31,7 @@ class FeedCell: UITableViewCell{
         titleLabel.text = article.title
         detailsLabel.text = article.details
         publicationLogo.image = article.getPublicationLogo()
-        upvotesLabel.text = String(article.upvotes)
+        upvotesLabel.text = "Recommended by \(article.upvotes)"
         
         articleImage.image = article.articleImage
         articleImage.clipsToBounds = true
@@ -44,6 +44,8 @@ class FeedViewController: UIViewController {
     
     var articles = [Article]()
     var selected: Article!
+    var viewingArticle = false
+    var nextArticle: Article!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -175,13 +177,14 @@ class FeedViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let articleView = segue.destinationViewController as ArticleViewController
         articleView.article = selected
         articleView.feedView = self
+        viewingArticle = true
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     @IBAction func closeArticleViewController (sender: UIStoryboardSegue){
@@ -189,11 +192,17 @@ class FeedViewController: UIViewController {
         let articleView = sender.sourceViewController as ArticleViewController
         articleView.removeFromParentViewController()
         tableView.reloadData()
+        viewingArticle = false
+        setNeedsStatusBarAppearanceUpdate()
         
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return viewingArticle
     }
     
 }
@@ -203,7 +212,6 @@ extension FeedViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
     }
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
