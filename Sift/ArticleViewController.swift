@@ -21,6 +21,8 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var publicationLogo: UIImageView!
     @IBOutlet weak var detailsLabel: UILabel!
     
+    var feedView: FeedViewController!
+    
     override func viewDidLoad() {
         
         textContent.textContainer.lineFragmentPadding = 0
@@ -97,11 +99,44 @@ class ArticleViewController: UIViewController {
             
         }
     }
-
+    
 }
 
 extension ArticleViewController: NSLayoutManagerDelegate {
     func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
         return 10
+    }
+}
+
+extension ArticleViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let bottomOffset = scrollView.contentSize.height - scrollView.bounds.origin.y - scrollView.bounds.height
+        
+        if bottomOffset < -60 {
+
+            var anim = POPBasicAnimation(propertyNamed: kPOPLayerPosition)
+            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            //anim.fromValue = NSValue(CGPoint: view.frame.origin)
+            anim.toValue = NSValue(CGPoint: CGPoint(x: view.center.x, y: -view.frame.height))
+            anim.completionBlock = {
+                (pop: POPAnimation!, done: Bool) -> Void in
+                if done {
+                    self.dismissViewControllerAnimated(false, completion: { () -> Void in
+                        self.feedView.tableView.reloadData()
+                    })
+                }
+            }
+            anim.duration = 0.3
+            
+            view.pop_addAnimation(anim, forKey: "slideUp")
+            
+            view.pop_animationForKey("slideUp")
+            
+        } else if scrollView.bounds.origin.y < -60 {
+            dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.feedView.tableView.reloadData()
+            })
+        }
     }
 }

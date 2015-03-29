@@ -162,7 +162,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="g3v-Qc-byB" id="77N-T5-JLB"/>
-                        <segue destination="xwb-bh-j2D" kind="presentation" identifier="displayArticle" id="wnr-5I-N1L"/>
+                        <segue destination="xwb-bh-j2D" kind="presentation" identifier="displayArticle" modalPresentationStyle="overCurrentContext" id="wnr-5I-N1L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -220,7 +220,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4E-Ko-BzG">
-                                                <rect key="frame" x="30" y="277" width="540" height="17"/>
+                                                <rect key="frame" x="30" y="277" width="540" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -315,9 +315,11 @@
                                         <exclude reference="haz-jl-IZH"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="xwb-bh-j2D" id="VY0-ri-cOy"/>
+                                </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="9jP-i2-9fZ" secondAttribute="width" id="2ZS-rU-YaR"/>
                             <constraint firstItem="jFA-HE-phY" firstAttribute="height" secondItem="aQi-Of-D1l" secondAttribute="height" priority="250" id="74o-aE-Ze6"/>

@@ -115,21 +115,6 @@ class FeedViewController: UIViewController {
     
     func getOlderArticles() {
         
-        /*
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!
-        
-        for var i = 0; i<10; i++ {
-        articles.insert(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1423753623104-718aaace6772", publication: "Publication", summarizedArticle: "", fullArticle: ""), atIndex: 0)
-        }
-        
-        tableView.reloadData()
-        
-        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 10, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-        
-        tableView.pullToRefreshView.stopAnimating()
-        
-        */
-        
         //Setup Google Service
         var service = GTLServiceSift()
         service.retryEnabled = true
@@ -194,9 +179,11 @@ class FeedViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let articleView = segue.destinationViewController as ArticleViewController
         articleView.article = selected
+        articleView.feedView = self
     }
     
     @IBAction func closeArticleViewController (sender: UIStoryboardSegue){
+        println("HERE")
         let articleView = sender.sourceViewController as ArticleViewController
         articleView.removeFromParentViewController()
     }
