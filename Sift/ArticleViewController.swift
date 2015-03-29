@@ -28,7 +28,7 @@ class ArticleViewController: UIViewController {
         
         textContent.textContainer.lineFragmentPadding = 0
         textContent.layoutManager.delegate = self
-        
+        5
         titleLabel.text = article.title
         textContent.text = article.summarizedArticle
         detailsLabel.text = article.details
@@ -102,6 +102,46 @@ class ArticleViewController: UIViewController {
         }
     }
     
+    @IBAction func recommentArticle(sender: AnyObject) {
+        //Setup Google Service
+        var service = GTLServiceSift()
+        service.retryEnabled = true
+        
+        //Declare Request Message
+        var upvoteRequest = GTLSiftMainUpvoteRequest()
+        
+        //Set Request Paramaters
+        
+        upvoteRequest.articleTitle = article.title
+        upvoteRequest.userId = UIDevice.currentDevice().identifierForVendor.UUIDString
+        
+        //Declare query
+        var query = GTLQuerySift.queryForSiftApiUpvoteWithObject(upvoteRequest) as GTLQuerySift
+        
+        if(article.upvotedByUser == 0){
+        //Perform authentication and login
+        service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            if object != nil {
+                
+                //Cast down to Article Response Message
+                let response = object as GTLSiftMainUpvoteResponse
+                
+                self.upvotesLabel.text = response.articleUpvotes.stringValue
+                
+                self.article.upvotes = response.articleUpvotes as Int
+                
+                self.article.upvotedByUser = 1
+                
+                
+            } else {
+                println("Error: \(error)")
+            }
+            
+        })
+        }
+
+    }
+
 }
 
 
