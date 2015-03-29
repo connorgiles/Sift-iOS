@@ -237,8 +237,6 @@ extension FeedViewController: UITableViewDataSource {
                 println("Image has been cached")
                 
             })
-            
-            
         }
         
         cell.layoutSubviews()
@@ -254,7 +252,7 @@ extension FeedViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         selected = articles[indexPath.row]
-        println("\(selected.title) Selected")
+        println("Reading \"\(selected.title)\"")
         
         performSegueWithIdentifier("displayArticle", sender: self)
         

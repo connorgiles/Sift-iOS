@@ -71,7 +71,7 @@ class Article {
         var summary = ""
         
         for sentence in article.summarizedArticle as [String] {
-            summary = "\(summary) \(sentence)"
+            summary = "\(summary)\(sentence) "
         }
         
         summarizedArticle = summary
@@ -87,7 +87,7 @@ class Article {
             isRetrieving = true
             
             imagesDownloading++
-            SVProgressHUD.show()
+            //SVProgressHUD.show()
             
             let manager = SDWebImageManager()
             

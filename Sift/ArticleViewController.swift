@@ -8,6 +8,8 @@
 
 import UIKit
 import SDWebImage
+import AudioToolbox
+import pop
 
 class ArticleViewController: UIViewController {
     
@@ -51,6 +53,49 @@ class ArticleViewController: UIViewController {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if motion == .MotionShake {
+            var newText: String!
+            
+            switch textContent.text {
+                
+            case article.fullArticle:
+                newText = article.summarizedArticle
+                
+            case article.summarizedArticle:
+                newText = article.fullArticle
+                
+            default:
+                println("NO CONTENT")
+                
+            }
+            
+            var anim = POPBasicAnimation(propertyNamed: kPOPViewAlpha)
+            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            anim.fromValue = 1
+            anim.toValue = 0
+            
+            textContent.pop_addAnimation(anim, forKey: "fadeOut")
+            
+            anim.fromValue = 0
+            anim.toValue = 1
+            
+            textContent.pop_addAnimation(anim, forKey: "fadeIn")
+            
+            textContent.pop_animationForKey("fadeOut")
+            textContent.text = newText
+            textContent.pop_animationForKey("fadeIn")
+            
+            //Vibrate Phone
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+        }
     }
 
 }

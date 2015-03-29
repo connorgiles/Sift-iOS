@@ -51,9 +51,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'SDWebImage.framework'
   install_framework 'SVProgressHUD.framework'
   install_framework 'SVPullToRefresh.framework'
+  install_framework 'pop.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'SDWebImage.framework'
   install_framework 'SVProgressHUD.framework'
   install_framework 'SVPullToRefresh.framework'
+  install_framework 'pop.framework'
 fi
