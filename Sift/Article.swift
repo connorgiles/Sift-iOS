@@ -45,10 +45,12 @@ class Article {
     var publication: String!
     var summarizedArticle: String!
     var fullArticle: String!
+    var upvotes: Int!
+    var upvotedByUser: Int!
     
     let publicationLogos = ["TechCrunch": UIImage(named: "logo-tech-crunch"), "VentureBeat": UIImage(named: "logo-venturebeat"), "FastCompany": UIImage(named: "logo-fast-company")]
     
-    init(title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String){
+    init(title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String, upvotes: Int, upvotedByUser: Int){
         self.title = title
         self.author = author
         self.date = date
@@ -56,6 +58,8 @@ class Article {
         self.publication = publication
         self.summarizedArticle = summarizedArticle
         self.fullArticle = fullArticle
+        self.upvotes = upvotes
+        self.upvotedByUser = upvotedByUser
         hasImage = false
         isRetrieving = false
         
@@ -67,6 +71,8 @@ class Article {
         date = NSDate(timeIntervalSince1970: article.publishedTimestamp as Double as NSTimeInterval)
         pictureURL = NSURL(string: article.imageUrl)
         publication = article.publication
+        upvotes = article.upvotes as Int
+        upvotedByUser = article.upvotedByUser as Int
         
         var summary = ""
         

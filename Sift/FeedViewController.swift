@@ -15,6 +15,7 @@ var imagesDownloading = 0
 
 class FeedCell: UITableViewCell{
     
+    @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var publicationLogo: UIImageView!
@@ -30,6 +31,7 @@ class FeedCell: UITableViewCell{
         titleLabel.text = article.title
         detailsLabel.text = article.details
         publicationLogo.image = article.getPublicationLogo()
+        upvotesLabel.text = String(article.upvotes)
         
         articleImage.image = article.articleImage
         articleImage.clipsToBounds = true
@@ -186,6 +188,8 @@ class FeedViewController: UIViewController {
         println("HERE")
         let articleView = sender.sourceViewController as ArticleViewController
         articleView.removeFromParentViewController()
+        tableView.reloadData()
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
