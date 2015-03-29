@@ -11,8 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="daw-Pc-eRn">
-                    <rect key="frame" x="185" y="221" width="111" height="37"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.20000000000000001" contentMode="center" image="splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="daw-Pc-eRn">
+                    <rect key="frame" x="185" y="220.5" width="111" height="38"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -26,6 +26,6 @@
         </view>
     </objects>
     <resources>
-        <image name="splash-logo" width="111" height="37"/>
+        <image name="splash-logo" width="111" height="38"/>
     </resources>
 </document>

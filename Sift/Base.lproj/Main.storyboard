@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Dn-RA-Kmy">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -173,6 +173,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="2Sv-wK-o9n" id="NvS-aF-n2X"/>
                         <outlet property="tableView" destination="g3v-Qc-byB" id="77N-T5-JLB"/>
                         <segue destination="xwb-bh-j2D" kind="presentation" identifier="displayArticle" modalPresentationStyle="overCurrentContext" id="wnr-5I-N1L"/>
                     </connections>
@@ -180,6 +181,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="482"/>
+        </scene>
+        <!--Launch View Controller-->
+        <scene sceneID="9N8-e5-P84">
+            <objects>
+                <viewController id="9Dn-RA-Kmy" customClass="LaunchViewController" customModule="Sift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nfF-2A-Wu3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ifk-yc-Iai"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ikl-8M-jZy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.20000000000000001" contentMode="center" image="splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="C95-8k-HCT">
+                                <rect key="frame" x="245" y="281" width="111" height="38"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="C95-8k-HCT" secondAttribute="centerY" id="4AQ-sX-1gp"/>
+                            <constraint firstAttribute="centerX" secondItem="C95-8k-HCT" secondAttribute="centerX" id="IhH-fZ-jut"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="logo" destination="C95-8k-HCT" id="Vn3-75-D9c"/>
+                        <segue destination="vXZ-lx-hvc" kind="presentation" identifier="launchApp" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="IV3-rp-0uN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rW0-HH-4g9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-720" y="487"/>
         </scene>
         <!--Article View Controller-->
         <scene sceneID="Ang-4v-PHD">
@@ -193,7 +226,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jP-i2-9fZ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9jP-i2-9fZ">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFA-HE-phY">
@@ -391,6 +424,7 @@
                     <connections>
                         <outlet property="articleImage" destination="lZd-lu-JFo" id="cWd-kE-Ghd"/>
                         <outlet property="detailsLabel" destination="s4E-Ko-BzG" id="kmj-QI-jvi"/>
+                        <outlet property="groupView" destination="jFA-HE-phY" id="P7f-R7-lR6"/>
                         <outlet property="publicationLogo" destination="iXv-v6-QYe" id="S3L-Gx-F1c"/>
                         <outlet property="recomendButton" destination="vOd-mV-lXM" id="O96-Ym-HfA"/>
                         <outlet property="textContent" destination="v5r-fe-J3b" id="E6G-Tg-a7h"/>
@@ -408,5 +442,6 @@
         <image name="down-icon" width="21" height="14"/>
         <image name="nav-bar-gradient" width="375" height="64"/>
         <image name="overlay-article-photo" width="375" height="214"/>
+        <image name="splash-logo" width="111" height="38"/>
     </resources>
 </document>

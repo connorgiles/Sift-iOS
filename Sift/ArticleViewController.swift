@@ -11,6 +11,8 @@ import SDWebImage
 import AudioToolbox
 import pop
 
+var buttonColor = UIColor(red: 18/255.0, green: 94/255.0, blue: 171/255.0, alpha: 1)
+
 class ArticleViewController: UIViewController {
     
     var article: Article!
@@ -22,8 +24,9 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var publicationLogo: UIImageView!
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var recomendButton: UIButton!
+    var isDragging = true
+    @IBOutlet weak var groupView: UIView!
     
-    var buttonColor = UIColor(red: 18/255.0, green: 94/255.0, blue: 171/255.0, alpha: 1)
     var feedView: FeedViewController!
     
     override func viewDidLoad() {
@@ -47,6 +50,7 @@ class ArticleViewController: UIViewController {
             self.recomendButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             self.recomendButton.setTitle("Recommended", forState: UIControlState.Normal)
         }
+        
         
         if article.hasImage! {
             
@@ -75,6 +79,7 @@ class ArticleViewController: UIViewController {
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
+    
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if motion == .MotionShake {
@@ -114,6 +119,14 @@ class ArticleViewController: UIViewController {
             
         }
     }
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        isDragging = true
+        println("Touch")
+    }
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        isDragging = false
+        println("eEnd")
+    }
     
     @IBAction func recommendArticle(sender: AnyObject) {
         //Setup Google Service
@@ -144,7 +157,7 @@ class ArticleViewController: UIViewController {
                     self.upvotesLabel.text = "Recommended by \(self.article.upvotes)"
                     
                     self.recomendButton.layer.borderWidth = 0
-                    self.recomendButton.layer.backgroundColor = self.buttonColor.CGColor
+                    self.recomendButton.layer.backgroundColor = buttonColor.CGColor
                     self.recomendButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
                     self.recomendButton.setTitle("Recommended", forState: UIControlState.Normal)
                     
@@ -175,10 +188,10 @@ extension ArticleViewController: UIScrollViewDelegate {
         
         let bottomOffset = scrollView.contentSize.height - scrollView.bounds.origin.y - scrollView.bounds.height
         
-        if bottomOffset < -50 {
+        if bottomOffset < -60 && isDragging{
             
             var anim = POPBasicAnimation(propertyNamed: kPOPLayerPosition)
-            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             //anim.fromValue = NSValue(CGPoint: view.frame.origin)
             anim.toValue = NSValue(CGPoint: CGPoint(x: view.center.x, y: -view.frame.height))
             anim.completionBlock = {
@@ -191,13 +204,13 @@ extension ArticleViewController: UIScrollViewDelegate {
                     })
                 }
             }
-            anim.duration = 0.3
+            anim.duration = 0.2
             
             view.pop_addAnimation(anim, forKey: "slideUp")
             
             view.pop_animationForKey("slideUp")
             
-        } else if scrollView.bounds.origin.y < -60 {
+        } else if scrollView.bounds.origin.y < -60 && isDragging{
             dismissViewControllerAnimated(true, completion: { () -> Void in
                 self.feedView.tableView.reloadData()
                 self.feedView.viewingArticle = false

@@ -21,6 +21,8 @@ class FeedCell: UITableViewCell{
     @IBOutlet weak var publicationLogo: UIImageView!
     @IBOutlet weak var articleImage: UIImageView!
     
+    var article: Article!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         articleImage.frame = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height)
@@ -28,9 +30,12 @@ class FeedCell: UITableViewCell{
     
     func setupArticle(article: Article) {
         
+        self.article = article
+        
         titleLabel.text = article.title
         detailsLabel.text = article.details
         publicationLogo.image = article.getPublicationLogo()
+        
         upvotesLabel.text = "Recommended by \(article.upvotes)"
         
         articleImage.image = article.articleImage
@@ -46,6 +51,7 @@ class FeedViewController: UIViewController {
     var selected: Article!
     var viewingArticle = false
     var nextArticle: Article!
+    @IBOutlet weak var navBar: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -74,7 +80,17 @@ class FeedViewController: UIViewController {
         
         //Set Request Paramaters
         if articles.count == 0 {
-            articleRequest.currentArticleTimestamp = NSInteger(NSDate().timeIntervalSince1970-(12*60*60*7))
+            
+            var defaults = NSUserDefaults()
+            
+            var lastArticleTime = defaults.objectForKey("lastArticleTime") as? NSTimeInterval
+            
+            if lastArticleTime != nil {
+                articleRequest.currentArticleTimestamp = lastArticleTime
+            } else {
+                articleRequest.currentArticleTimestamp = NSInteger(NSDate().timeIntervalSince1970-(12*60*60))
+            }
+            
         } else {
             articleRequest.currentArticleTimestamp = articles.last?.date.timeIntervalSince1970
         }
@@ -101,9 +117,14 @@ class FeedViewController: UIViewController {
                             , inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
                     }
                 } else {
-                    println("NO MORE ARTICLES")
                     
-                    SVProgressHUD.showInfoWithStatus("That's all for today!")
+                    if self.articles.count != 0 {
+                        println("NO MORE ARTICLES")
+                        
+                        SVProgressHUD.showInfoWithStatus("The end. Check back soon!")
+                    } else {
+                        
+                    }
                 }
                 
                 
@@ -128,6 +149,7 @@ class FeedViewController: UIViewController {
         
         //Set Request Paramaters
         if articles.count == 0 {
+            
             articleRequest.currentArticleTimestamp = NSDate().timeIntervalSince1970
         } else {
             articleRequest.currentArticleTimestamp = articles.first?.date.timeIntervalSince1970
@@ -147,21 +169,23 @@ class FeedViewController: UIViewController {
                 let response = object as GTLSiftMainArticleResponse
                 
                 if response.articles != nil {
+                    
                     let newArticles = response.articles as [GTLSiftMainArticle]
                     
                     for article in newArticles {
                         self.articles.insert(Article(article: article), atIndex: 0)
-                        
-                        self.tableView.reloadData()
-                        
-                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: newArticles.count, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-                        
-                        self.tableView.pullToRefreshView.stopAnimating()
                     }
+                    
+                    self.tableView.reloadData()
+                    
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: newArticles.count, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+                    
+                    self.tableView.pullToRefreshView.stopAnimating()
+                    
                 } else {
                     println("NO MORE ARTICLES")
                     
-                    SVProgressHUD.showInfoWithStatus("You've tapped us out!")
+                    SVProgressHUD.showInfoWithStatus("You've reached the end!")
                 }
                 
                 
@@ -205,17 +229,40 @@ class FeedViewController: UIViewController {
         return viewingArticle
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        let rows = tableView.indexPathsForVisibleRows() as [NSIndexPath]
+        
+        for index in rows {
+            let article = tableView.cellForRowAtIndexPath(index) as FeedCell
+            
+            println(article.article.title)
+        }
+    }
+    
 }
 
 extension FeedViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        let count = articles.count
+        
+        if count == 0 {
+            navBar.hidden = true
+        } else {
+            navBar.hidden = false
+        }
+        return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let article = articles[indexPath.row]
+        
+        var defaults = NSUserDefaults()
+        
+        defaults.setObject(article.date.timeIntervalSince1970, forKey: "lastArticleTime")
+        
+        defaults.synchronize()
         
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedCell
         

@@ -25,6 +25,7 @@
 		B167673B1AC7565400F4D70B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B167673A1AC7565400F4D70B /* Foundation.framework */; };
 		B167673C1AC7566800F4D70B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16767361AC7552F00F4D70B /* Security.framework */; };
 		B167673D1AC7567200F4D70B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16767381AC7553D00F4D70B /* SystemConfiguration.framework */; };
+		B18768D51AC80CCB00DD4F1B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18768D41AC80CCB00DD4F1B /* LaunchViewController.swift */; };
 		B1C8AB421AC70FFE00354520 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */; };
 		B1C8AB431AC70FFE00354520 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */; };
 		B1CA50DE1AC786890020F117 /* GTLSiftMainArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA50DD1AC786890020F117 /* GTLSiftMainArticle.m */; };
@@ -76,6 +77,7 @@
 		B16767361AC7552F00F4D70B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B16767381AC7553D00F4D70B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B167673A1AC7565400F4D70B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B18768D41AC80CCB00DD4F1B /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		B1CA50DC1AC786890020F117 /* GTLSiftMainArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftMainArticle.h; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				B1436FCD1AC662CF008AF161 /* LaunchScreen.xib */,
 				B1436FC21AC662CF008AF161 /* Supporting Files */,
 				B1F771281AC68F19005DCD29 /* Sift-Bridging-Header.h */,
+				B18768D41AC80CCB00DD4F1B /* LaunchViewController.swift */,
 			);
 			path = Sift;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18768D51AC80CCB00DD4F1B /* LaunchViewController.swift in Sources */,
 				B11328D21AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.m in Sources */,
 				B1436FC71AC662CF008AF161 /* FeedViewController.swift in Sources */,
 				B11328CB1AC77B8E00323BBF /* GTLServiceSift.m in Sources */,

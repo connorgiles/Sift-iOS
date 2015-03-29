@@ -12,18 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var feedView: FeedViewController!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //Declare Storyboard and initial view controller
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var feedView = storyboard.instantiateViewControllerWithIdentifier("FeedViewController") as FeedViewController
-        
-        
-        self.window?.rootViewController = feedView
-        self.window?.makeKeyAndVisible()
         
         return true
     }
@@ -34,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
