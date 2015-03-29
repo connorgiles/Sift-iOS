@@ -17,11 +17,17 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textContent: UITextView!
     @IBOutlet weak var publicationLogo: UIImageView!
+    @IBOutlet weak var detailsLabel: UILabel!
     
     override func viewDidLoad() {
         
+        textContent.textContainer.lineFragmentPadding = 0
+        textContent.layoutManager.delegate = self
+        
         titleLabel.text = article.title
-        textContent.text = article.fullArticle
+        textContent.text = article.summarizedArticle
+        detailsLabel.text = article.details
+        publicationLogo.image = article.getPublicationLogo()
         
         if article.hasImage! {
             
@@ -37,16 +43,20 @@ class ArticleViewController: UIViewController {
                 println("Image has been cached")
                 
             })
-            
-            
         }
-        
         articleImage.clipsToBounds = true
         articleImage.contentMode = UIViewContentMode.ScaleAspectFill
         
     }
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
 
+}
+
+extension ArticleViewController: NSLayoutManagerDelegate {
+    func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+        return 10
+    }
 }

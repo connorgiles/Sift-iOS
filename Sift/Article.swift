@@ -46,6 +46,8 @@ class Article {
     var summarizedArticle: String!
     var fullArticle: String!
     
+    let publicationLogos = ["TechCrunch": UIImage(named: "logo-tech-crunch"), "VentureBeat": UIImage(named: "logo-venturebeat"), "FastCompany": UIImage(named: "logo-fast-company")]
+    
     init(title: String, author: String, date: NSDate, pictureURL: String, publication: String, summarizedArticle: String, fullArticle: String){
         self.title = title
         self.author = author
@@ -65,7 +67,14 @@ class Article {
         date = NSDate(timeIntervalSince1970: article.publishedTimestamp as Double as NSTimeInterval)
         pictureURL = NSURL(string: article.imageUrl)
         publication = article.publication
-        summarizedArticle = "CHANGE THIS"
+        
+        var summary = ""
+        
+        for sentence in article.summarizedArticle as [String] {
+            summary = "\(summary) \(sentence)"
+        }
+        
+        summarizedArticle = summary
         fullArticle = article.fullArticle
         hasImage = false
         isRetrieving = false
@@ -105,6 +114,10 @@ class Article {
     }
     
     func getPublicationLogo() -> UIImage {
+        let image = publicationLogos[publication]
+        if image != nil {
+            return image as UIImage!!
+        }
         return UIImage()
     }
     
