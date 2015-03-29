@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		215051B3D44622C12065B875 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DA195C1260A33B4BF850A0 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B11328C81AC77B8E00323BBF /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11328B41AC77B8E00323BBF /* GoogleOpenSource.framework */; };
+		B11328CA1AC77B8E00323BBF /* GTLQuerySift.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328B71AC77B8E00323BBF /* GTLQuerySift.m */; };
+		B11328CB1AC77B8E00323BBF /* GTLServiceSift.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328B91AC77B8E00323BBF /* GTLServiceSift.m */; };
+		B11328CD1AC77B8E00323BBF /* GTLSiftConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328BD1AC77B8E00323BBF /* GTLSiftConstants.m */; };
+		B11328CF1AC77B8E00323BBF /* GTLSiftMainArticleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328C11AC77B8E00323BBF /* GTLSiftMainArticleRequest.m */; };
+		B11328D01AC77B8E00323BBF /* GTLSiftMainArticleResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328C31AC77B8E00323BBF /* GTLSiftMainArticleResponse.m */; };
+		B11328D11AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328C51AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.m */; };
+		B11328D21AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B11328C71AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.m */; };
 		B1436FC51AC662CF008AF161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FC41AC662CF008AF161 /* AppDelegate.swift */; };
 		B1436FC71AC662CF008AF161 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1436FC61AC662CF008AF161 /* FeedViewController.swift */; };
 		B1436FCA1AC662CF008AF161 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1436FC81AC662CF008AF161 /* Main.storyboard */; };
@@ -19,6 +27,7 @@
 		B167673D1AC7567200F4D70B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16767381AC7553D00F4D70B /* SystemConfiguration.framework */; };
 		B1C8AB421AC70FFE00354520 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */; };
 		B1C8AB431AC70FFE00354520 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */; };
+		B1CA50DE1AC786890020F117 /* GTLSiftMainArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA50DD1AC786890020F117 /* GTLSiftMainArticle.m */; };
 		B1FBF7831AC66F28007D03C7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7821AC66F28007D03C7 /* Article.swift */; };
 		B1FBF7851AC67BC4007D03C7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +45,22 @@
 /* Begin PBXFileReference section */
 		78DA195C1260A33B4BF850A0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		806632FEB09FED8F88D99A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B11328B41AC77B8E00323BBF /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		B11328B61AC77B8E00323BBF /* GTLQuerySift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLQuerySift.h; sourceTree = "<group>"; };
+		B11328B71AC77B8E00323BBF /* GTLQuerySift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLQuerySift.m; sourceTree = "<group>"; };
+		B11328B81AC77B8E00323BBF /* GTLServiceSift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLServiceSift.h; sourceTree = "<group>"; };
+		B11328B91AC77B8E00323BBF /* GTLServiceSift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLServiceSift.m; sourceTree = "<group>"; };
+		B11328BA1AC77B8E00323BBF /* GTLSift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSift.h; sourceTree = "<group>"; };
+		B11328BC1AC77B8E00323BBF /* GTLSiftConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftConstants.h; sourceTree = "<group>"; };
+		B11328BD1AC77B8E00323BBF /* GTLSiftConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLSiftConstants.m; sourceTree = "<group>"; };
+		B11328C01AC77B8E00323BBF /* GTLSiftMainArticleRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftMainArticleRequest.h; sourceTree = "<group>"; };
+		B11328C11AC77B8E00323BBF /* GTLSiftMainArticleRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLSiftMainArticleRequest.m; sourceTree = "<group>"; };
+		B11328C21AC77B8E00323BBF /* GTLSiftMainArticleResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftMainArticleResponse.h; sourceTree = "<group>"; };
+		B11328C31AC77B8E00323BBF /* GTLSiftMainArticleResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLSiftMainArticleResponse.m; sourceTree = "<group>"; };
+		B11328C41AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftMainUpvoteRequest.h; sourceTree = "<group>"; };
+		B11328C51AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLSiftMainUpvoteRequest.m; sourceTree = "<group>"; };
+		B11328C61AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftMainUpvoteResponse.h; sourceTree = "<group>"; };
+		B11328C71AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLSiftMainUpvoteResponse.m; sourceTree = "<group>"; };
 		B119047B1AC6F8E7002615FD /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B1436FBF1AC662CF008AF161 /* Sift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1436FC31AC662CF008AF161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +77,8 @@
 		B167673A1AC7565400F4D70B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1C8AB401AC70EFA00354520 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		B1C8AB411AC70EFA00354520 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		B1CA50DC1AC786890020F117 /* GTLSiftMainArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLSiftMainArticle.h; sourceTree = "<group>"; };
+		B1CA50DD1AC786890020F117 /* GTLSiftMainArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLSiftMainArticle.m; sourceTree = "<group>"; };
 		B1F771281AC68F19005DCD29 /* Sift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sift-Bridging-Header.h"; sourceTree = "<group>"; };
 		B1FBF7821AC66F28007D03C7 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11328C81AC77B8E00323BBF /* GoogleOpenSource.framework in Frameworks */,
 				B167673D1AC7567200F4D70B /* SystemConfiguration.framework in Frameworks */,
 				B167673C1AC7566800F4D70B /* Security.framework in Frameworks */,
 				B167673B1AC7565400F4D70B /* Foundation.framework in Frameworks */,
@@ -89,6 +117,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B11328B31AC77B8E00323BBF /* iOS-API */ = {
+			isa = PBXGroup;
+			children = (
+				B11328B41AC77B8E00323BBF /* GoogleOpenSource.framework */,
+				B11328B61AC77B8E00323BBF /* GTLQuerySift.h */,
+				B11328B71AC77B8E00323BBF /* GTLQuerySift.m */,
+				B11328B81AC77B8E00323BBF /* GTLServiceSift.h */,
+				B11328B91AC77B8E00323BBF /* GTLServiceSift.m */,
+				B11328BA1AC77B8E00323BBF /* GTLSift.h */,
+				B11328BC1AC77B8E00323BBF /* GTLSiftConstants.h */,
+				B11328BD1AC77B8E00323BBF /* GTLSiftConstants.m */,
+				B1CA50DC1AC786890020F117 /* GTLSiftMainArticle.h */,
+				B1CA50DD1AC786890020F117 /* GTLSiftMainArticle.m */,
+				B11328C01AC77B8E00323BBF /* GTLSiftMainArticleRequest.h */,
+				B11328C11AC77B8E00323BBF /* GTLSiftMainArticleRequest.m */,
+				B11328C21AC77B8E00323BBF /* GTLSiftMainArticleResponse.h */,
+				B11328C31AC77B8E00323BBF /* GTLSiftMainArticleResponse.m */,
+				B11328C41AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.h */,
+				B11328C51AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.m */,
+				B11328C61AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.h */,
+				B11328C71AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.m */,
+			);
+			path = "iOS-API";
+			sourceTree = "<group>";
+		};
 		B1436FB61AC662CF008AF161 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +165,7 @@
 		B1436FC11AC662CF008AF161 /* Sift */ = {
 			isa = PBXGroup;
 			children = (
+				B11328B31AC77B8E00323BBF /* iOS-API */,
 				B1436FC41AC662CF008AF161 /* AppDelegate.swift */,
 				B1FBF7821AC66F28007D03C7 /* Article.swift */,
 				B1FBF7841AC67BC4007D03C7 /* ArticleViewController.swift */,
@@ -317,10 +371,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11328D21AC77B8E00323BBF /* GTLSiftMainUpvoteResponse.m in Sources */,
 				B1436FC71AC662CF008AF161 /* FeedViewController.swift in Sources */,
+				B11328CB1AC77B8E00323BBF /* GTLServiceSift.m in Sources */,
 				B1FBF7851AC67BC4007D03C7 /* ArticleViewController.swift in Sources */,
 				B1436FC51AC662CF008AF161 /* AppDelegate.swift in Sources */,
+				B11328CA1AC77B8E00323BBF /* GTLQuerySift.m in Sources */,
+				B11328CF1AC77B8E00323BBF /* GTLSiftMainArticleRequest.m in Sources */,
+				B11328D11AC77B8E00323BBF /* GTLSiftMainUpvoteRequest.m in Sources */,
 				B1FBF7831AC66F28007D03C7 /* Article.swift in Sources */,
+				B1CA50DE1AC786890020F117 /* GTLSiftMainArticle.m in Sources */,
+				B11328D01AC77B8E00323BBF /* GTLSiftMainArticleResponse.m in Sources */,
+				B11328CD1AC77B8E00323BBF /* GTLSiftConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,9 +507,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Sift/Sift-iOSAPI",
+					"$(PROJECT_DIR)/Sift/iOS-API",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Sift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -475,9 +542,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Sift/Sift-iOSAPI",
+					"$(PROJECT_DIR)/Sift/iOS-API",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Sift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

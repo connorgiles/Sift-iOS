@@ -58,15 +58,67 @@ class FeedViewController: UIViewController {
     }
     
     func getNewerArticles() {
-        
+        /*
         for var i = 0; i<10; i++ {
-            articles.append(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1423753623104-718aaace6772", publication: "Publication", summarizedArticle: "", fullArticle: ""))
-            
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: articles.count-1
-                , inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+        articles.append(Article(title: "Article", author: "Author", date: NSDate(), pictureURL: "https://download.unsplash.com/photo-1423753623104-718aaace6772", publication: "Publication", summarizedArticle: "", fullArticle: ""))
+        
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: articles.count-1
+        , inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
         }
         
         tableView.infiniteScrollingView.stopAnimating()
+        */
+        
+        //Setup Google Service
+        var service = GTLServiceSift()
+        service.retryEnabled = true
+        
+        //Declare Request Message
+        var articleRequest = GTLSiftMainArticleRequest()
+        
+        //Set Request Paramaters
+        if articles.count == 0 {
+            articleRequest.currentArticleTimestamp = 0
+        } else {
+            articleRequest.currentArticleTimestamp = articles.last?.date.timeIntervalSince1970
+        }
+        
+        articleRequest.numOfArticles = 10
+        articleRequest.userId = "TEST"
+        
+        //Delare query
+        var query = GTLQuerySift.queryForSiftApiGetArticlesWithObject(articleRequest) as GTLQuerySift
+        
+        //Perform authentication and login
+        service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            if object != nil {
+                
+                //Cast down to Article Response Message
+                let response = object as GTLSiftMainArticleResponse
+                
+                if response.articles != nil {
+                    let newArticles = response.articles as [GTLSiftMainArticle]
+                    
+                    for article in newArticles {
+                        self.articles.append(Article(article: article))
+                        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.articles.count-1
+                            , inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+                    }
+                } else {
+                    println("NO MORE ARTICLES")
+                    
+                    SVProgressHUD.showInfoWithStatus("That's all for today!")
+                }
+                
+                
+            } else {
+                println("Error: \(error)")
+            }
+            
+            self.tableView.infiniteScrollingView.stopAnimating()
+            
+        })
+        
     }
     
     func getOlderArticles() {
@@ -131,7 +183,6 @@ extension FeedViewController: UITableViewDataSource {
             article.retrieveImage({ () -> () in
                 cell.setupArticle(article)
                 cell.setNeedsLayout()
-                //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                 println("Image has been cached")
                 
             })

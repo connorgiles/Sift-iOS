@@ -21,7 +21,7 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         
         titleLabel.text = article.title
-        textContent.text = article.summarizedArticle
+        textContent.text = article.fullArticle
         
         if article.hasImage! {
             

@@ -59,6 +59,18 @@ class Article {
         
     }
     
+    init(article: GTLSiftMainArticle) {
+        title = article.title
+        author = article.author
+        date = NSDate(timeIntervalSince1970: article.publishedTimestamp as Double as NSTimeInterval)
+        pictureURL = NSURL(string: article.imageUrl)
+        publication = article.publication
+        summarizedArticle = "CHANGE THIS"
+        fullArticle = article.fullArticle
+        hasImage = false
+        isRetrieving = false
+    }
+    
     func retrieveImage(completion: () -> ()) {
         
         if !isRetrieving {
@@ -73,7 +85,7 @@ class Article {
             println("Start Download")
             
             manager.downloadImageWithURL(self.pictureURL, options: SDWebImageOptions.RetryFailed, progress: { (progress, total) -> Void in
-                println("DOWNLOADING")
+                println(progress/total)
             }, completed: { (image, error, cacheType, finished, URL) -> Void in
                 if error != nil {
                     println("Error: \(error)")
