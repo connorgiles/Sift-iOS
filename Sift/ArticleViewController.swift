@@ -15,12 +15,13 @@ class ArticleViewController: UIViewController {
     
     var article: Article!
     
+    @IBOutlet weak var upvotesLabel: UILabel!
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textContent: UITextView!
     @IBOutlet weak var publicationLogo: UIImageView!
     @IBOutlet weak var detailsLabel: UILabel!
-    
+
     override func viewDidLoad() {
         
         textContent.textContainer.lineFragmentPadding = 0
@@ -30,6 +31,7 @@ class ArticleViewController: UIViewController {
         textContent.text = article.summarizedArticle
         detailsLabel.text = article.details
         publicationLogo.image = article.getPublicationLogo()
+        upvotesLabel.text = String(article.upvotes)
         
         if article.hasImage! {
             
@@ -97,8 +99,50 @@ class ArticleViewController: UIViewController {
             
         }
     }
+    
+    @IBAction func recommentArticle(sender: AnyObject) {
+        //Setup Google Service
+        var service = GTLServiceSift()
+        service.retryEnabled = true
+        
+        //Declare Request Message
+        var upvoteRequest = GTLSiftMainUpvoteRequest()
+        
+        //Set Request Paramaters
+        
+        upvoteRequest.articleTitle = article.title
+        upvoteRequest.userId = UIDevice.currentDevice().identifierForVendor.UUIDString
+        
+        //Declare query
+        var query = GTLQuerySift.queryForSiftApiUpvoteWithObject(upvoteRequest) as GTLQuerySift
+        
+        if(article.upvotedByUser == 0){
+        //Perform authentication and login
+        service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
+            if object != nil {
+                
+                //Cast down to Article Response Message
+                let response = object as GTLSiftMainUpvoteResponse
+                
+                self.upvotesLabel.text = response.articleUpvotes.stringValue
+                
+                self.article.upvotes = response.articleUpvotes as Int
+                
+                self.article.upvotedByUser = 1
+                
+                
+            } else {
+                println("Error: \(error)")
+            }
+            
+        })
+        }
+
+    }
 
 }
+
+
 
 extension ArticleViewController: NSLayoutManagerDelegate {
     func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
