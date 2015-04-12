@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Dn-RA-Kmy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9Dn-RA-Kmy">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -43,33 +43,33 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" restorationIdentifier="'" translatesAutoresizingMaskIntoConstraints="NO" id="jYa-HL-8De">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
+                                                    <rect key="frame" x="-8" y="0.0" width="616" height="214"/>
                                                     <subviews>
                                                         <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sXC-SF-2YQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="616" height="214"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="overlay-article-photo" translatesAutoresizingMaskIntoConstraints="NO" id="3c8-N4-RxZ" userLabel="Image Overlay">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="214"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="616" height="214"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="181-AN-Nm1">
-                                                            <rect key="frame" x="540" y="154" width="40" height="40"/>
+                                                            <rect key="frame" x="556" y="154" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="dDd-T1-a5k"/>
                                                                 <constraint firstAttribute="width" constant="40" id="vlo-Kl-cRg"/>
                                                             </constraints>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9w-uV-xrN" userLabel="Wrapper View">
-                                                            <rect key="frame" x="32" y="86" width="536" height="41.5"/>
+                                                            <rect key="frame" x="32" y="86" width="552" height="42"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbW-4q-gkG">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="536" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="552" height="25"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzV-GW-hGk">
-                                                                    <rect key="frame" x="0.0" y="25" width="536" height="16.5"/>
+                                                                    <rect key="frame" x="0.0" y="25" width="552" height="17"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsg-Fr-5tF">
-                                                            <rect key="frame" x="20" y="177" width="30.5" height="16.5"/>
+                                                            <rect key="frame" x="20" y="177" width="31" height="17"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -134,9 +134,9 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="jYa-HL-8De" firstAttribute="leading" secondItem="zfE-YU-4Ti" secondAttribute="leadingMargin" constant="-8" id="4bI-02-sl9"/>
+                                                <constraint firstItem="jYa-HL-8De" firstAttribute="leading" secondItem="zfE-YU-4Ti" secondAttribute="leadingMargin" constant="-16" id="4bI-02-sl9"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="jYa-HL-8De" secondAttribute="bottom" constant="-8" id="GAG-1i-X5S"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jYa-HL-8De" secondAttribute="trailing" constant="-8" id="XF3-wc-UaJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jYa-HL-8De" secondAttribute="trailing" constant="-16" id="XF3-wc-UaJ"/>
                                                 <constraint firstItem="jYa-HL-8De" firstAttribute="top" secondItem="zfE-YU-4Ti" secondAttribute="topMargin" constant="-8" id="zGQ-6C-fEp"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -260,7 +260,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5r-fe-J3b">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5r-fe-J3b">
                                                 <rect key="frame" x="30" y="317" width="540" height="111.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -270,6 +270,7 @@
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="RjB-V0-cdm"/>

@@ -76,7 +76,7 @@ class Article {
         
         var summary = ""
         
-        for sentence in article.summarizedArticle as [String] {
+        for sentence in article.summarizedArticle as! [String] {
             summary = "\(summary)\(sentence) "
         }
         
@@ -90,17 +90,13 @@ class Article {
         
         if !isRetrieving {
             
-            isRetrieving = true
-            
             imagesDownloading++
             //SVProgressHUD.show()
             
             let manager = SDWebImageManager()
             
-            println("Start Download")
-            
             manager.downloadImageWithURL(self.pictureURL, options: SDWebImageOptions.RetryFailed, progress: { (progress, total) -> Void in
-                println(progress/total)
+                self.isRetrieving = true
             }, completed: { (image, error, cacheType, finished, URL) -> Void in
                 if error != nil {
                     println("Error: \(error)")

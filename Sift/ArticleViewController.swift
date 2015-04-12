@@ -35,7 +35,12 @@ class ArticleViewController: UIViewController {
         textContent.layoutManager.delegate = self
         
         titleLabel.text = article.title
-        textContent.text = article.summarizedArticle
+        
+        var text = NSMutableAttributedString(string: article.summarizedArticle)
+        
+        text = addLinks(text)
+        
+        textContent.attributedText = text
         detailsLabel.text = article.details
         publicationLogo.image = article.getPublicationLogo()
         upvotesLabel.text = "Recommended by \(article.upvotes)"
@@ -70,6 +75,57 @@ class ArticleViewController: UIViewController {
         articleImage.clipsToBounds = true
         articleImage.contentMode = UIViewContentMode.ScaleAspectFill
         
+    }
+    
+    func addLinks(content: NSMutableAttributedString) -> NSMutableAttributedString {
+        
+        var newText = NSMutableAttributedString()
+        var text = content
+        
+        while text.length > 0 {
+            
+            //Find Open tag and link
+            let openIndex = text.mutableString.rangeOfString("{a=")
+            
+            if openIndex.location != NSNotFound {
+                
+                let openEnd = text.mutableString.rangeOfString("}")
+                let linkURL = text.mutableString.substringWithRange(NSRange(location: openIndex.location + openIndex.length, length: openEnd.location - (openIndex.location + openIndex.length)))
+                println(linkURL)
+                
+                //Move previous text to newText
+                newText.appendAttributedString(NSAttributedString(string: text.mutableString.substringToIndex(openIndex.location)))
+                
+                //Take off previous text on search text
+                text = NSMutableAttributedString(string: text.mutableString.substringFromIndex(openEnd.location + openEnd.length))
+                
+                //Find Close Tag
+                let closeIndex = text.mutableString.rangeOfString("{a}")
+                
+                //Text range to apply link to
+                let linkTextRange = NSRange(location: 0, length: closeIndex.location)
+                var linkText = NSMutableAttributedString(string: text.mutableString.substringWithRange(linkTextRange))
+                
+                //Add Attributes
+                linkText.addAttribute(NSLinkAttributeName, value: linkURL, range: linkTextRange)
+                linkText.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: linkTextRange)
+                
+                //Add link to newText
+                newText.appendAttributedString(linkText)
+                
+                
+                //Take off previous text on search text
+                text = NSMutableAttributedString(string: text.mutableString.substringFromIndex(closeIndex.location + closeIndex.length))
+            } else {
+                newText.appendAttributedString(text)
+                break
+            }
+            
+        }
+        
+        //println(newText)
+        
+        return newText
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -119,14 +175,6 @@ class ArticleViewController: UIViewController {
             
         }
     }
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        isDragging = true
-        println("Touch")
-    }
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        isDragging = false
-        println("eEnd")
-    }
     
     @IBAction func recommendArticle(sender: AnyObject) {
         //Setup Google Service
@@ -142,7 +190,7 @@ class ArticleViewController: UIViewController {
         upvoteRequest.userId = UIDevice.currentDevice().identifierForVendor.UUIDString
         
         //Declare query
-        var query = GTLQuerySift.queryForSiftApiUpvoteWithObject(upvoteRequest) as GTLQuerySift
+        var query = GTLQuerySift.queryForSiftApiUpvoteWithObject(upvoteRequest) as! GTLQuerySift
         
         if(article.upvotedByUser == 0) {
             //Perform authentication and login
@@ -150,7 +198,7 @@ class ArticleViewController: UIViewController {
                 if object != nil {
                     
                     //Cast down to Article Response Message
-                    let response = object as GTLSiftMainUpvoteResponse
+                    let response = object as! GTLSiftMainUpvoteResponse
                     
                     self.article.upvotes = response.articleUpvotes as Int
                     
@@ -188,7 +236,7 @@ extension ArticleViewController: UIScrollViewDelegate {
         
         let bottomOffset = scrollView.contentSize.height - scrollView.bounds.origin.y - scrollView.bounds.height
         
-        if bottomOffset < -60 && isDragging{
+        if bottomOffset < -60 && !isDragging {
             
             var anim = POPBasicAnimation(propertyNamed: kPOPLayerPosition)
             anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -210,12 +258,22 @@ extension ArticleViewController: UIScrollViewDelegate {
             
             view.pop_animationForKey("slideUp")
             
-        } else if scrollView.bounds.origin.y < -60 && isDragging{
+        } else if scrollView.bounds.origin.y < -60 && !isDragging {
             dismissViewControllerAnimated(true, completion: { () -> Void in
                 self.feedView.tableView.reloadData()
                 self.feedView.viewingArticle = false
                 self.feedView.setNeedsStatusBarAppearanceUpdate()
             })
         }
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        isDragging = true
+        println("Touch")
+    }
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        isDragging = false
+        println("End")
     }
 }

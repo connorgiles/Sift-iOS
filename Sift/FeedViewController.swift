@@ -99,17 +99,17 @@ class FeedViewController: UIViewController {
         articleRequest.userId = "TEST"
         
         //Delare query
-        var query = GTLQuerySift.queryForSiftApiGetArticlesWithObject(articleRequest) as GTLQuerySift
+        var query = GTLQuerySift.queryForSiftApiGetArticlesWithObject(articleRequest) as! GTLQuerySift
         
         //Perform authentication and login
         service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
             if object != nil {
                 
                 //Cast down to Article Response Message
-                let response = object as GTLSiftMainArticleResponse
+                let response = object as! GTLSiftMainArticleResponse
                 
                 if response.articles != nil {
-                    let newArticles = response.articles as [GTLSiftMainArticle]
+                    let newArticles = response.articles as! [GTLSiftMainArticle]
                     
                     for article in newArticles {
                         self.articles.append(Article(article: article))
@@ -118,7 +118,15 @@ class FeedViewController: UIViewController {
                     }
                 } else {
                     
-                    if self.articles.count != 0 {
+                    if self.articles.count == 0 {
+                        
+                        
+                        var defaults = NSUserDefaults()
+                        
+                        defaults.setObject(NSInteger(NSDate().timeIntervalSince1970-(12*60*60)), forKey: "lastArticleTime")
+                        
+                        defaults.synchronize()
+                        
                         println("NO MORE ARTICLES")
                         
                         SVProgressHUD.showInfoWithStatus("The end. Check back soon!")
@@ -159,18 +167,18 @@ class FeedViewController: UIViewController {
         articleRequest.userId = "TEST"
         
         //Delare query
-        var query = GTLQuerySift.queryForSiftApiGetArticlesWithObject(articleRequest) as GTLQuerySift
+        var query = GTLQuerySift.queryForSiftApiGetArticlesWithObject(articleRequest) as! GTLQuerySift
         
         //Perform authentication and login
         service.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, object: AnyObject!, error: NSError!) -> Void in
             if object != nil {
                 
                 //Cast down to Article Response Message
-                let response = object as GTLSiftMainArticleResponse
+                let response = object as! GTLSiftMainArticleResponse
                 
                 if response.articles != nil {
                     
-                    let newArticles = response.articles as [GTLSiftMainArticle]
+                    let newArticles = response.articles as! [GTLSiftMainArticle]
                     
                     for article in newArticles {
                         self.articles.insert(Article(article: article), atIndex: 0)
@@ -204,7 +212,7 @@ class FeedViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let articleView = segue.destinationViewController as ArticleViewController
+        let articleView = segue.destinationViewController as! ArticleViewController
         articleView.article = selected
         articleView.feedView = self
         viewingArticle = true
@@ -213,7 +221,7 @@ class FeedViewController: UIViewController {
     
     @IBAction func closeArticleViewController (sender: UIStoryboardSegue){
         println("HERE")
-        let articleView = sender.sourceViewController as ArticleViewController
+        let articleView = sender.sourceViewController as! ArticleViewController
         articleView.removeFromParentViewController()
         tableView.reloadData()
         viewingArticle = false
@@ -230,10 +238,10 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        let rows = tableView.indexPathsForVisibleRows() as [NSIndexPath]
+        let rows = tableView.indexPathsForVisibleRows() as! [NSIndexPath]
         
         for index in rows {
-            let article = tableView.cellForRowAtIndexPath(index) as FeedCell
+            let article = tableView.cellForRowAtIndexPath(index) as! FeedCell
             
             println(article.article.title)
         }
@@ -264,24 +272,18 @@ extension FeedViewController: UITableViewDataSource {
         
         defaults.synchronize()
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as FeedCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as! FeedCell
         
         if article.hasImage! {
-            
-            println("Has Image")
             
             cell.setupArticle(article)
             cell.setNeedsLayout()
             
         } else {
             
-            println("Needs image")
-            
             article.retrieveImage({ () -> () in
                 cell.setupArticle(article)
                 cell.setNeedsLayout()
-                println("Image has been cached")
-                
             })
         }
         
